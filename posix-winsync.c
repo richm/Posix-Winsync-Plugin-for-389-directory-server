@@ -922,7 +922,8 @@ posix_winsync_pre_ds_mod_group_cb(void *cbdata, const Slapi_Entry *rawentry,
                     "_pre_ds_mod_group_cb present %d modify %d before\n",is_present_local,do_modify_local);
 	if(posix_winsync_config_get_mapMemberUid())
 	    memberUidLock();
-        modGroupMembership(ds_entry,smods,do_modify);
+    modGroupMembership(ds_entry,smods,do_modify);
+	if(posix_winsync_config_get_mapMemberUid())
         memberUidUnlock();
 	
     slapi_log_error(SLAPI_LOG_PLUGIN, posix_winsync_plugin_name,
@@ -1084,7 +1085,8 @@ posix_winsync_pre_ds_add_group_cb(void *cbdata, const Slapi_Entry *rawentry,
         }else{
             if(posix_winsync_config_get_mapMemberUid())
                 memberUidLock();
-                addGroupMembership(ds_entry,ad_entry);
+            addGroupMembership(ds_entry,ad_entry);
+            if(posix_winsync_config_get_mapMemberUid())
                 memberUidUnlock();
         }
     }
