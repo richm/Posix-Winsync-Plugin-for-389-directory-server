@@ -716,6 +716,7 @@ posix_winsync_pre_ad_mod_group_cb(void *cbdata, const Slapi_Entry *rawentry,
                     *do_modify = 1;
                 }
                 slapi_ch_free((void**)&ad_type);
+                slapi_valueset_free(vs);
 
                 slapi_log_error(SLAPI_LOG_PLUGIN, posix_winsync_plugin_name,
                    "_pre_ad_mod_group_b -- add modify %s DS account [%s]\n",
@@ -913,6 +914,7 @@ posix_winsync_pre_ds_mod_group_cb(void *cbdata, const Slapi_Entry *rawentry,
                 slapi_log_error(SLAPI_LOG_PLUGIN, posix_winsync_plugin_name,"4.\n");
 
                 slapi_ch_free((void**)&local_type);
+                slapi_valueset_free(vs);
                 /* what about if delete all values on windows ???? */
             }
             i++;
